@@ -5,7 +5,6 @@
   <depend package="learning/bolero/include" />
   <depend package="learning/bolero/src/bl_loader" />
   <rosdep name="python" />
-  <rosdep name="python-dev" />
   <rosdep name="cython" />
-  <rosdep name="python-numpy" />
+  <rosdep name="numpy" />
 </package>

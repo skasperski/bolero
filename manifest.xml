@@ -27,10 +27,10 @@
   </classifiers>
 
   <rosdep name="python" />
-  <rosdep name="python-numpy" />
-  <rosdep name="python-scipy" />
-  <rosdep name="python-matplotlib" />
-  <rosdep name="python-sklearn" />
+  <rosdep name="numpy" />
+  <rosdep name="scipy" />
+  <rosdep name="matplotlib" />
+  <rosdep name="sklearn" />
   <rosdep name="cython" />
   <depend package="learning/bolero/bolero/wrapper" />
   <depend package="learning/bolero/src/representation/promp" />

@@ -15,5 +15,6 @@ target_include_directories(bl_loader
 target_link_libraries(bl_loader
 	PUBLIC
 		interface
+		Python3::NumPy
 )
 

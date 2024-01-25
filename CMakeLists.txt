@@ -5,6 +5,8 @@ project(BOLERO
 
 enable_testing()
 
+find_package (Python3 COMPONENTS NumPy)
+
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(lib_manager REQUIRED IMPORTED_TARGET lib_manager)
 

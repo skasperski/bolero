@@ -1,31 +1,21 @@
-cmake_minimum_required(VERSION 2.6)
+add_library(bl_loader SHARED 
+	PyOptimizer.cpp
+	PyEnvironment.cpp
+	PyBehavior.cpp
+	PyBehaviorSearch.cpp
+	PyLoadableBehavior.cpp
+	PythonInterpreter.cpp
+)
 
-project(bl_loader)
-set(PROJECT_VERSION 1.0)
-set(PROJECT_DESCRIPTION "Loads C++ libraries for bolero.")
+target_include_directories(bl_loader
+	PUBLIC
+		$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+		$<INSTALL_INTERFACE:include>
+)
 
-enable_testing()
+#target_link_libraries(${PROJECT_NAME}
+#                      ${LIB_MANAGER_LIBRARIES}
+#                      ${EXTRA_LIBRARIES}
+#                      ${YAML_LIBRARIES})
 
-include(FindPkgConfig)
-find_package(lib_manager)
-lib_defaults()
-define_module_info()
-
-include(CheckIncludeFileCXX)
-CHECK_INCLUDE_FILE_CXX("tr1/functional" USE_TR1)
-if(${USE_TR1})
-    ADD_DEFINITIONS(-DUSE_TR1)
-else(${USE_TR1})
-    ADD_DEFINITIONS(-DNO_TR1)
-endif()
-
-if(DEFINED ROCK)
-    ADD_DEFINITIONS(-DROCK)
-endif()
-
-option(PYTHON_SUPPORT "Enable BLLoader to load and wrap Python modules" ON)
-
-add_subdirectory(src)
-if(PYTHON_SUPPORT)
-  add_subdirectory(test)
-endif(PYTHON_SUPPORT)

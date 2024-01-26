@@ -5,10 +5,11 @@ project(BOLERO
 
 enable_testing()
 
-find_package (Python3 COMPONENTS NumPy)
+find_package (Python COMPONENTS Development NumPy)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(lib_manager REQUIRED IMPORTED_TARGET lib_manager)
+pkg_check_modules(configmaps REQUIRED IMPORTED_TARGET configmaps)
 
 add_subdirectory(src)
 

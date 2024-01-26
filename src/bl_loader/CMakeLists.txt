@@ -1,4 +1,5 @@
-add_library(bl_loader SHARED 
+add_library(bl_loader SHARED
+	BLLoader.cpp
 	PyOptimizer.cpp
 	PyEnvironment.cpp
 	PyBehavior.cpp
@@ -15,6 +16,7 @@ target_include_directories(bl_loader
 target_link_libraries(bl_loader
 	PUBLIC
 		interface
-		Python3::NumPy
+		Python::Python
+		Python::NumPy
 )
 

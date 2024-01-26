@@ -444,16 +444,15 @@ void toPyObjects(std::va_list& cppArgs, const std::list<CppType>& types, std::ve
  * #define NUMPY_IMPORT_ARRAY_RETVAL NULL
  */
 #if PYTHON_VERSION == 2
-void dummy_import_array()
-{
-    import_array();
-}
+void
 #else
-int dummy_import_array()
+void*
+#endif
+dummy_import_array()
 {
     import_array();
+    return NULL;
 }
-#endif
 
 PythonInterpreter::PythonInterpreter()
 {

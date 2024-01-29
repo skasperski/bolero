@@ -11,5 +11,3 @@ pkg_check_modules(configmaps REQUIRED IMPORTED_TARGET configmaps)
 
 add_subdirectory(src)
 
-install(FILES)
-

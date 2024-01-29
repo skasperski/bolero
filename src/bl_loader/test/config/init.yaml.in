@@ -1,4 +1,0 @@
-Behavior:
-    type: test_behavior.TestBehavior
-    test_value_a: 42
-    test_value_b: 44

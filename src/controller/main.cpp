@@ -19,10 +19,18 @@
  */
 
 #include "Controller.h"
+#include <iostream>
 
 
 int main(int argc, char **argv) {
-  bolero::Controller c;
-  c.run();
+  try
+  {
+    bolero::Controller c;
+    c.run();
+  }catch (std::exception &e)
+  {
+    std::cerr << "Unhandled exception from BOLeRo: " << e.what() << std::endl;
+    return 1;
+  }
   return 0;
 }

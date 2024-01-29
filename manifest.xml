@@ -40,5 +40,6 @@
   <rosdep name="cython" />
   
   <depend package="simulation/lib_manager" />
+  <depend package="tools/configmaps" />
   
 </package>

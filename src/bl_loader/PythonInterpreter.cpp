@@ -10,9 +10,7 @@
 #include <list>
 #include <cstdarg>
 #include <sstream>
-
-#warning PYTHON_VERSION
-
+#include <iostream>
 
 namespace bolero { namespace bl_loader {
 
@@ -63,6 +61,7 @@ std::string getString(PyObjectPtr object)
   return PyString_AsString(object.get());
 #else
   std::string result;
+  std::cout << "Object: " << object.get() << std::endl;
   if(PyUnicode_Check(object.get())) {
     PyObject* temp_bytes = PyUnicode_AsEncodedString(object.get(), "UTF-8", "strict"); // Owned reference
     if (temp_bytes != NULL) {

@@ -20,8 +20,13 @@ namespace bolero {
   class ParameterizedEnvironment;
   class LoadableBehavior;
 
+
   namespace bl_loader {
+
+#ifdef PYTHON_SUPPORT
     class PyLoadable;
+#endif
+
   /**
     * Loads components at runtime.
     *
@@ -137,8 +142,10 @@ namespace bolero {
       BLLoader(const BLLoader&);
       BLLoader& operator=(const BLLoader&);
 
+#ifdef PYTHON_SUPPORT
       /**Contains all python libs that have been acquired.*/
       std::map<std::string, PyLoadable*> pythonLibraries;
+#endif
 
     }; // end of class BLLoader
 

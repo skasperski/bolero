@@ -38,11 +38,13 @@ namespace bolero {
       libManager->releaseLibrary(getLibName());
       delete libManager;
 
+#ifdef PYTHON_SUPPORT
       map<string, PyLoadable*>::iterator it;
       for(it = pythonLibraries.begin(); it != pythonLibraries.end(); ++it)
       {
         delete it->second;
       }
+#endif
     }
 
     void BLLoader::loadConfigFile(const string &config_file) {
@@ -76,10 +78,12 @@ namespace bolero {
       if (std::find(libNameList.begin(), libNameList.end(), libName) != libNameList.end()) {
         return true;
       }
+#ifdef PYTHON_SUPPORT
       // check for Python libraries ...
       if (pythonLibraries.find(libName) != pythonLibraries.end()) {
         return true;
       }
+#endif
       return false;
     }
 
@@ -213,13 +217,16 @@ namespace bolero {
 
     void BLLoader::releaseLibrary(const string &name) {
 
+
       //Python libraries are managed by the BLLoader, C++ libs are manged by the libManager
+#ifdef PYTHON_SUPPORT
       if(pythonLibraries.find(name) != pythonLibraries.end())
       {
         delete pythonLibraries[name];
         pythonLibraries.erase(name);
       }
       else
+#endif
       {//has to be c++ behavior
         LibManager::ErrorNumber err = libManager->releaseLibrary(name);
         switch(err)

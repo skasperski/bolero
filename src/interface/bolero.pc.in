@@ -1,0 +1,10 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=@CMAKE_INSTALL_PREFIX@
+libdir=${prefix}/lib
+includedir=${prefix}/@INCLUDE_DESTINATION@
+
+Name: bolero
+Description: Interface definitions for BoLeRo.
+Version: @PROJECT_VERSION@
+Libs:
+Cflags: -I${includedir}

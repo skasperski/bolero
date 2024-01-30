@@ -1,0 +1,10 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=@CMAKE_INSTALL_PREFIX@
+libdir=${prefix}/lib
+includedir=${prefix}/@INCLUDE_DESTINATION@
+
+Name: @TARGET_NAME@
+Description: Loader for C++ or Pythyon modules.
+Version: @PROJECT_VERSION@
+Libs: -L${libdir} -lbl_loader
+Cflags: -I${includedir}

@@ -1,8 +1,39 @@
 set(TARGET_NAME bl_loader)
 set(INCLUDE_DESTINATION include/bolero/bl_loader)
 
+find_package(Python COMPONENTS Development NumPy)
+if(TARGET Python::Python AND TARGET Python::NumPy)
+	set(PYTHON_SUPPORT TRUE)
+endif()
+
+list(APPEND HEADERS BLLoader.h)
+list(APPEND SOURCES BLLoader.cpp)
+
+if(PYTHON_SUPPORT)
+
+	list(APPEND HEADERS
+		PyOptimizer.h
+		PyEnvironment.h
+		PyBehavior.h
+		PyBehaviorSearch.h
+		PyLoadableBehavior.h
+		PyLoadable.h
+		PythonInterpreter.hpp
+	)
+	
+	list(APPEND SOURCES
+		PyOptimizer.cpp
+		PyEnvironment.cpp
+		PyBehavior.cpp
+		PyBehaviorSearch.cpp
+		PyLoadableBehavior.cpp
+		PythonInterpreter.cpp
+	)
+endif()
+
+
 add_library(${TARGET_NAME} SHARED
-	BLLoader.cpp
+	${SOURCES}
 )
 
 target_include_directories(${TARGET_NAME}
@@ -16,10 +47,23 @@ target_link_libraries(${TARGET_NAME}
 		interface
 )
 
+if(PYTHON_SUPPORT)
+	target_compile_definitions(${TARGET_NAME}
+		PUBLIC
+			PYTHON_SUPPORT
+	)
+
+	target_link_libraries(${TARGET_NAME}
+		PUBLIC
+			Python::Python
+			Python::NumPy
+	)
+endif()
+
 install(TARGETS ${TARGET_NAME} EXPORT bolero-targets)
 
 install(
-	FILES BLLoader.h
+	FILES ${HEADERS}
 	DESTINATION ${INCLUDE_DESTINATION}
 )
 

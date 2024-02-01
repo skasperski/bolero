@@ -1,17 +1,1 @@
-# Temporary files
-*~
-build_info.py
-bolero/wrapper/_wrapper.cpp
-
-# Temporary test files
-.coverage
-coverageReport
-
-# Binaries
-*.pyc
-*.pyd
-*.so
-build
-
-# Release
-build_tools/release/bolero_release.zip
+build/

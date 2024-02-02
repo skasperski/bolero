@@ -20,15 +20,9 @@ add_custom_command(
 	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-set(SETUP_PY "${CMAKE_CURRENT_SOURCE_DIR}/setup.py")
-add_custom_target(python_build ALL
-	COMMAND python setup.py build_ext
+add_custom_target(pip_install ALL
+	COMMAND pip install .
 	DEPENDS _ranking_svm.c
 	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-)
-
-install(CODE "execute_process(
-	COMMAND python setup.py install --prefix=${CMAKE_INSTALL_PREFIX}
-	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})"
 )
 

@@ -1,10 +1,10 @@
 prefix=@CMAKE_INSTALL_PREFIX@
 exec_prefix=@CMAKE_INSTALL_PREFIX@
 libdir=${prefix}/lib
-includedir=${prefix}/include
+includedir=${prefix}/@INCLUDE_DESTINATION@
 
-Name: @PROJECT_NAME@
+Name: @TARGET_NAME@
 Description: @PROJECT_DESCRIPTION@
 Version: @PROJECT_VERSION@
-Libs: -L${libdir} -l@PROJECT_NAME@
-Cflags: -I${includedir} -I${includedir}/bolero
+Libs: -L${libdir} -l@TARGET_NAME@
+Cflags: -I${includedir}

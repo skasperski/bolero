@@ -1,59 +1,37 @@
-cmake_minimum_required(VERSION 2.6)
-project(cmaes_optimizer)
-set(PROJECT_VERSION 1.0)
-set(PROJECT_DESCRIPTION "A implementation of cmaes for the ml_interfaces::optimizer.")
-
-include(FindPkgConfig)
-find_package(lib_manager)
-lib_defaults()
-define_module_info()
-
-pkg_check_modules(PKGCONFIG REQUIRED
-                            lib_manager
-                            configmaps
-                            bolero)
-include_directories(${PKGCONFIG_INCLUDE_DIRS})
-link_directories(${PKGCONFIG_LIBRARY_DIRS})
-
-include_directories(src src/c_cmaes)
-
+set(TARGET_NAME cmaes_optimizer)
+set(INCLUDE_DESTINATION include/bolero/cmaes_optimizer)
 set(SOURCES
-        src/CMAESOptimizer.cpp
-        src/c_cmaes/cmaes.c
+	CMAESOptimizer.cpp
+	c_cmaes/cmaes.c
 )
-
 set(HEADERS
-        src/CMAESOptimizer.h
-        src/c_cmaes/cmaes_interface.h
-        src/c_cmaes/cmaes.h
+	CMAESOptimizer.h
+	c_cmaes/cmaes_interface.h
+	c_cmaes/cmaes.h
 )
 
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
+add_library(${TARGET_NAME} SHARED ${SOURCES})
 
-target_link_libraries(${PROJECT_NAME} ${PKGCONFIG_LIBRARIES})
-
-
-if(WIN32)
-  set(LIB_INSTALL_DIR bin) # .dll are in PATH, like executables
-else(WIN32)
-  set(LIB_INSTALL_DIR lib)
-endif(WIN32)
-
-
-set(_INSTALL_DESTINATIONS
-  RUNTIME DESTINATION bin
-  LIBRARY DESTINATION ${LIB_INSTALL_DIR}
-  ARCHIVE DESTINATION lib
+target_include_directories(${TARGET_NAME}
+	PUBLIC
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/c_cmaes
+		$<INSTALL_INTERFACE:${INCLUDE_DESTINATION}>
 )
 
+target_link_libraries(${TARGET_NAME}
+	PUBLIC
+		interface
+		PkgConfig::configmaps
+)
 
 # Install the library into the lib folder
-install(TARGETS ${PROJECT_NAME} ${_INSTALL_DESTINATIONS})
+install(TARGETS ${TARGET_NAME})
 
 # Install headers into mars include directory
-install(FILES ${HEADERS} DESTINATION include/bolero/${PROJECT_NAME})
+install(FILES ${HEADERS} DESTINATION ${INCLUDE_DESTINATION})
 
-# Prepare and install necessary files to support finding of the library
-# using pkg-config
-configure_file(${PROJECT_NAME}.pc.in ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc @ONLY)
-install(FILES ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc DESTINATION lib/pkgconfig)
+# Prepare and install pkg-config files
+configure_file(cmaes_optimizer.pc.in ${CMAKE_BINARY_DIR}/cmaes_optimizer.pc @ONLY)
+install(FILES ${CMAKE_BINARY_DIR}/cmaes_optimizer.pc DESTINATION lib/pkgconfig)
+

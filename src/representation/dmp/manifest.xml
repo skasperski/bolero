@@ -10,5 +10,5 @@
   <rosdep name="python" />
   <rosdep name="python-dev" />
   <rosdep name="cython" />
-  <rosdep name="python-numpy" />
+  <rosdep name="numpy" />
 </package>

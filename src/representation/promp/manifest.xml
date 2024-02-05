@@ -8,7 +8,6 @@
   <depend package="yaml-cpp" />
   <depend package="eigen3" />
   <rosdep name="python" />
-  <rosdep name="python-dev" />
   <rosdep name="cython" />
-  <rosdep name="python-numpy" />
+  <rosdep name="numpy" />
 </package>

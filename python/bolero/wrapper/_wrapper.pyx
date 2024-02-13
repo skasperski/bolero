@@ -174,7 +174,7 @@ cdef class CppOptimizer:
 
     def __cinit__(self):
         self.thisptr = NULL  # The BLLoader will delete this pointer
-        self.config_yaml = ""
+        self.config_yaml = str("")
 
     def initialize_yaml(self, config_yaml):
         self.config_yaml = get_string(config_yaml)
@@ -255,7 +255,7 @@ cdef class CppBehaviorSearch:
 
     def __cinit__(self):
         self.thisptr = NULL  # The BLLoader will delete this pointer
-        self.config_yaml = ""
+        self.config_yaml = str("")
 
     def initialize_yaml(self, config_yaml):
         self.config_yaml = get_string(config_yaml)
@@ -343,7 +343,7 @@ cdef class CppEnvironment:
 
     def __cinit__(self):
         self.thisptr = NULL  # The BLLoader will delete this pointer
-        self.config_yaml = ""
+        self.config_yaml = str("")
 
     def initialize_yaml(self, config_yaml):
         self.config_yaml = get_string(config_yaml)
@@ -460,7 +460,7 @@ cdef class CppContextualEnvironment:
 
     def __cinit__(self):
         self.thisptr = NULL
-        self.config_yaml = ""
+        self.config_yaml = str("")
 
     def initialize_yaml(self, config_yaml):
         self.config_yaml = get_string(config_yaml)
@@ -610,7 +610,7 @@ cdef class CppParameterizedEnvironment:
 
     def __cinit__(self):
         self.thisptr = NULL
-        self.config_yaml = ""
+        self.config_yaml = str("")
 
     def __dealloc__(self):
         del self.thisptr
@@ -762,7 +762,7 @@ cdef class CppBehavior:
 
     def __cinit__(self):
         self.thisptr = NULL  # The BLLoader will delete this pointer
-        self.config_yaml = ""
+        self.config_yaml = str("")
 
     def initialize_yaml(self, config_yaml):
         self.config_yaml = get_string(config_yaml)

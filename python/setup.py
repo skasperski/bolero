@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages, Extension
 
 import bolero
 
@@ -11,8 +11,9 @@ setup(
 	version=bolero.__version__,
 	url="http://robotik.dfki-bremen.de/en/research/softwaretools/bolero.html",
 	download_url="https://github.com/rock-learning/bolero/archive/master.zip",
-	scripts = ["scripts/bolero-run"],
+	scripts = ["bolero/scripts/bolero-run"],
 
 	packages=find_packages(),
+	ext_modules=[Extension('bolero/utils/_ranking_svm', ['bolero/utils/_ranking_svm.c'])],
 )
 

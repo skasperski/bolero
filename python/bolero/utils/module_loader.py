@@ -254,8 +254,11 @@ PERMITTED_BASECLASSES = [
 
 def _load_cpp_library(name, type_name):
     from bolero import wrapper
-    if not wrapper.__available__ or name is None:
-        raise ValueError("Cannot load C++ library '%s' with name '%s' because of Reasons." % (type_name, name))
+    if not wrapper.__available__:
+        raise ValueError("Cannot load C++ library '%s' because the wrapper is not available." % (type_name))
+
+    if name is None:
+        raise ValueError("Cannot load C++ library '%s' with name '%s'." % (type_name, name))
 
     baseclass = name.lower()
     if baseclass not in PERMITTED_BASECLASSES:

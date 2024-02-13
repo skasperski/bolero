@@ -1,21 +1,18 @@
-def configuration(parent_package="", top_path=None):
-    from numpy.distutils.misc_util import Configuration
+from setuptools import setup, find_packages
 
-    config = Configuration("bolero", parent_package, top_path)
-    config.set_options(ignore_setup_xxx_py=True,
-                       assume_default_configuration=True,
-                       delegate_options_to_subpackages=True,
-                       quiet=True)
-    config.add_subpackage("behavior_search")
-    config.add_subpackage("controller")
-    config.add_subpackage("datasets")
-    config.add_subpackage("environment")
-    config.add_subpackage("optimizer")
-    config.add_subpackage("representation")
-    config.add_subpackage("utils")
-    config.add_subpackage("wrapper")
-    return config
+import bolero
 
-if __name__ == "__main__":
-    from numpy.distutils.core import setup
-    setup(**configuration(top_path="").todict())
+setup(
+	name="bolero",
+	maintainer="DFKI-RIC",
+	maintainer_email="behavior-learning@dfki.de",
+	description="Behavior Optimization and Learning for Robots",
+	license="BSD 3-clause",
+	version=bolero.__version__,
+	url="http://robotik.dfki-bremen.de/en/research/softwaretools/bolero.html",
+	download_url="https://github.com/rock-learning/bolero/archive/master.zip",
+	scripts = ["scripts/bolero-run"],
+
+	packages=find_packages(),
+)
+

@@ -1,8 +1,0 @@
-<package>
-  <description brief="pso_optimizer">
-    A implementation of Particle Swarm Optimization (PSO).
-  </description>
-  <depend package="learning/bolero/include" />
-  <depend package="simulation/lib_manager" />
-  <depend package="tools/configmaps" />
-</package>

@@ -5,6 +5,7 @@ find_package(Python COMPONENTS Development NumPy)
 if(TARGET Python::Python AND TARGET Python::NumPy)
 	set(PYTHON_SUPPORT TRUE)
 endif()
+find_package(yaml-cpp REQUIRED)
 
 list(APPEND HEADERS BLLoader.h)
 list(APPEND SOURCES BLLoader.cpp)
@@ -45,6 +46,7 @@ target_include_directories(${TARGET_NAME}
 target_link_libraries(${TARGET_NAME}
 	PUBLIC
 		interface
+		yaml-cpp
 )
 
 if(PYTHON_SUPPORT)

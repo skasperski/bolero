@@ -1,1 +1,4 @@
 /build/
+python/bolero/wrapper/_wrapper.cpp
+python/bolero/utils/_ranking_svm.cpp
+
